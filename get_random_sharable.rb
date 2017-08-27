@@ -1,7 +1,7 @@
 # Some passwords need to be shared with others, and 
 # I can't always expect those others to use LastPass.
 #
-# So we're going to use "{adjective} {animal} {verb}s {noun}"
+# So we're going to use "{adjective} {animal}s {verb} {noun}"
 # This ought to make it memorable, and reasonably random.
 #
 # Warning: This is a joke script, and really shouldn't be
@@ -32,7 +32,7 @@ def generate_password
 		password_components[component] = get_random component
 	end
 
-	password_components['verb'] += 's'
+	password_components['animal'] += 's'
 
 	return password_components.values.join(' ')
 end
