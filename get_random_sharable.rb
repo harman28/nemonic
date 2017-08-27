@@ -1,4 +1,4 @@
-# Some passwords need to be shared with others, and 
+# Some passwords need to be shared with others, and
 # I can't always expect those others to use LastPass.
 #
 # So we're going to use "{adjective} {animal}s {verb} {noun}"
