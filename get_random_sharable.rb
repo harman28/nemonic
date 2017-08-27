@@ -1,8 +1,12 @@
 # Some passwords need to be shared with others, and 
 # I can't always expect those others to use LastPass.
-# 
+#
 # So we're going to use "{adjective} {animal} {verb}s {noun}"
 # This ought to make it memorable, and reasonably random.
+#
+# Warning: This is a joke script, and really shouldn't be
+# used to create a password for anything more important
+# than your Netflix subscription.
 
 require 'httparty'
 require 'json'
