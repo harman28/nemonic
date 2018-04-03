@@ -6,6 +6,9 @@
 # "{number} {adjective} {animals} {verb} {noun} {symbol}"
 # This ought to make it memorable, and reasonably random.
 #
+# Note: You aren't expected to like the very first password
+# you get. Run it a few times and pick the parts you like.
+#
 # Warning: This is a joke script, and really shouldn't be
 # used to create a password for anything more important
 # than your Netflix subscription.
@@ -13,8 +16,7 @@
 
 require 'httparty'
 require 'json'
-# Ruby doesn't know how to pluralize. Rails does.
-require 'active_support/inflector'
+require 'plural'
 
 PASSWORD_FORMAT="number_adjective_animal_verb_noun_symbol".freeze
 
@@ -24,6 +26,8 @@ RANDOM_LISTS = [
   'noun',
   'verb'
 ]
+
+RANDOM_LIST_URL="https://www.randomlists.com/data/%s.json"
 
 def get_random thing
   if respond_to? "get_random_#{thing}", true
@@ -36,7 +40,7 @@ def get_random thing
 end
 
 def get_random_from_list thing
-  url="https://www.randomlists.com/data/#{thing}s.json"
+  url=RANDOM_LIST_URL % "#{thing}s"
   response = HTTParty.get(url)
   json=JSON.parse(response.body)
   result = json['data'] || json['RandL']['items']
@@ -55,7 +59,7 @@ end
 def get_random_animal
   # Multiple animals are always funnier than single animals
   animal = get_random_from_list 'animal'
-  return animal.pluralize
+  return animal.plural
 end
 
 def get_random_symbol
@@ -70,7 +74,7 @@ def generate_password
 		password_components[component] = get_random component
 	end
 
-  password_components.values.map(&:capitalize).join()
+  password_components.values.map(&:capitalize).join
 end
 
 puts generate_password
