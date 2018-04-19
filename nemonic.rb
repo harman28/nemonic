@@ -54,7 +54,7 @@ class Nemonic
 
   private_class_method def self.random_symbol
     # So random
-    '!'
+    ['!', '?'].sample
   end
 end
 
